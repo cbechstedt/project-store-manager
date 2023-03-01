@@ -17,19 +17,19 @@ const findById = async (productId) => {
   return camelize(product);
 };
 
-// const insert = async (product) => {
-//   const columns = Object.keys(snakeize(product)).join(', ');
-//   const placeholders = Object.keys(product).map((_el) => ('?')).join(', ');
+const createProduct = async (name) => {
+  // const columns = Object.keys(snakeize(name)).join(', ');
+  // const placeholders = Object.keys(name).map((_el) => ('?')).join(', ');
 
-//   const [{ insertId }] = await connection.execute(
-//     `INSERT INTO StoreManager.products (${columns}) VALUES (${placeholders})`,
-//     [...Object.values(product)],
-//   );
-//   return insertId;
-// };
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO StoreManager.products (name) VALUES (?)',
+    [name],
+  );
+  return insertId;
+};
 
 module.exports = {
   findAll,
   findById,
-  // insert,
+  createProduct,
 };
