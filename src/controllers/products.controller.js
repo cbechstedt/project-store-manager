@@ -16,8 +16,8 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
   const { name } = req.body;
-  const { message } = await productService.createProduct(name);
-  // if (type) return res.status(errorMap.mapError(type)).json({ message });
+  const { type, message } = await productService.createProduct(name);
+  if (type) return res.status(errorMap.mapError(type)).json(message);
 
   return res.status(201).json(message);
 };
