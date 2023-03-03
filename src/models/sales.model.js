@@ -1,29 +1,29 @@
-const camelize = require('camelize');
+// const camelize = require('camelize');
 const connection = require('./connection');
 
-const createSale = async () => {
-  const [{ insertId }] = await connection.execute(
-    'INSERT INTO StoreManager.sales (date) VALUE (default)',
-  );
-  return insertId;
-};
+// const createSale = async () => {
+//   const [{ insertId }] = await connection.execute(
+//     'INSERT INTO StoreManager.sales (date) VALUE (default)',
+//   );
+//   return insertId;
+// };
 
-const findById = async (saleId) => {
-  const [[sale]] = await connection.execute(
-    'SELECT * FROM StoreManager.sales WHERE id = ?', [saleId],
-  );
-  return camelize(sale);
-};
+// const findById = async (saleId) => {
+//   const [[sale]] = await connection.execute(
+//     'SELECT * FROM StoreManager.sales WHERE id = ?', [saleId],
+//   );
+//   return camelize(sale);
+// };
 
-const createSaleProduct = async (product) => {
-  const values = product.map((obj) => Object.values(obj)).flat();
-  await connection.execute(
-    'INSERT INTO StoreManager.sales (sale_id, product_id, quantity) VALUES (?, ?, ?)',
-    [values],
-  );
-  const saleId = await createSale();
-  return saleId;
-};
+// const createSaleProduct = async (product) => {
+//   const values = product.map((obj) => Object.values(obj)).flat();
+//   await connection.execute(
+//     'INSERT INTO StoreManager.sales (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+//     [values],
+//   );
+//   const saleId = await createSale();
+//   return saleId;
+// };
 
 const findAll = async () => {
   const [result] = await connection.execute(
@@ -48,9 +48,9 @@ const findSaleById = async (id) => {
 };
 
 module.exports = {
-  createSale,
-  findById,
-  createSaleProduct,
+  // createSale,
+  // findById,
+  // createSaleProduct,
   findAll,
   findSaleById,
 };
